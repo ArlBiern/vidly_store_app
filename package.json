@@ -4,12 +4,20 @@
   "description": "Node learning app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch_dev": "nodemon index.js",
+    "watch_prod": "set NODE_ENV=production&& nodemon index.js"
   },
   "keywords": [
     "node",
     "express"
   ],
   "author": "Mosh Hamedani,  Ariel Biernacki",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "joi": "^17.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
 }

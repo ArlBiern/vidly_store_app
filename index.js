@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const db_debugger = require("debug")("app");
+const Joi = require("joi");
+Joi.objectId = require("joi-objectid")(Joi);
 
 const home = require("./routes/home");
 const genres = require("./routes/genres");

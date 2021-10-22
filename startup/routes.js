@@ -19,4 +19,8 @@ module.exports = function (app) {
   app.use("/api/auth", auth);
 
   app.use(errorHandle);
+
+  app.use(function (req, res, next) {
+    res.status(404).send("Bad path - please check it");
+  });
 };

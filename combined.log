@@ -1,0 +1,26 @@
+{"level":"error","message":"Could not get the genres"}
+{"level":"error","message":{}}
+{"level":"error","message":"Could not get the genres"}
+{"level":"error","message":"Could not get the genres"}
+{"level":"error","message":"Could not get the genres"}
+{"level":"error","message":"Could not get the genres"}
+{"level":"error","message":"Could not get the genres"}
+{"level":"error","message":"Could not get the genres"}
+{"level":"error","message":"Could not get the genres","meta":{}}
+{"level":"error","message":"Could not get the genres","service":"user-service"}
+{"level":"error","message":"Could not get the genres"}
+{"level":"info","message":"Could not get the genres","meta":"dasdsadsa"}
+{"level":"info","message":"Could not get the genres","meta":{"a":"vcvx"}}
+{"level":"error","message":"Could not get the genres","meta":{"a":"vcvx"}}
+undefined
+2021-10-22T11:06:53.641Z error: Could not get the genres - undefined
+2021-10-22T11:09:46.433Z error: Cast to ObjectId failed for value "1233" (type string) at path "_id" for model "Genre" - undefined
+{"level":"error","message":"{\"stringValue\":\"\\\"1233\\\"\",\"valueType\":\"string\",\"kind\":\"ObjectId\",\"value\":\"1233\",\"path\":\"_id\",\"reason\":{},\"name\":\"CastError\",\"message\":\"Cast to ObjectId failed for value \\\"1233\\\" (type string) at path \\\"_id\\\" for model \\\"Genre\\\"\"}"}
+{"level":"error","message":"{}"}
+{"level":"error","message":"{}","meta":"{}"}
+{"level":"error","message":"Something faile reallly bad"}
+{"level":"error","message":{}}
+{"level":"error","message":"{}"}
+{"level":"error","message":"Cast to ObjectId failed for value \"2321321\" (type string) at path \"_id\" for model \"Genre\""}
+{"level":"error","message":"Cast to ObjectId failed for value \"2321321\" (type string) at path \"_id\" for model \"Genre\""}
+{"level":"error","message":"Could not get the genres"}

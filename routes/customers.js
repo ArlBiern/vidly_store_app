@@ -5,13 +5,15 @@ const {
   validateCustomer,
   validateCustomerUpdate,
 } = require("../models/customer");
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
 
 router.get("/", async (req, res) => {
   const customers = await Customer.find().sort({ name: 1 });
   res.send(customers);
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const { error } = validateCustomer(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
@@ -28,7 +30,7 @@ router.post("/", async (req, res) => {
   res.send(customer);
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   const customerToUpdate = await Customer.findById(req.params.id);
 
   const { error } = validateCustomerUpdate(req.body);
@@ -55,14 +57,13 @@ router.put("/:id", async (req, res) => {
   res.send(customer);
 });
 
-router.delete("/:id", async (req, res) => {
-  const customer = await Customer.findByIdAndRemove(req.params.id);
-
-  if (!customer) {
+router.delete("/:id", [auth, admin], async (req, res) => {
+  try {
+    const customer = await Customer.findByIdAndRemove(req.params.id);
+    res.send(customer);
+  } catch (ex) {
     return res.status(404).send("The genre with the given ID was not found.");
   }
-
-  res.send(customer);
 });
 
 module.exports = router;

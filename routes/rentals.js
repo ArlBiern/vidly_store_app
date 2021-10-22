@@ -4,6 +4,8 @@ const router = express.Router();
 const { Rental, validateRental } = require("../models/rental");
 const { Movie } = require("../models/movie");
 const { Customer } = require("../models/customer");
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
 
 //Fawn.init(mongoose);
 
@@ -12,7 +14,7 @@ router.get("/", async (req, res) => {
   res.send(rental);
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const { error } = validateRental(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
@@ -64,24 +66,22 @@ router.post("/", async (req, res) => {
   res.send(rental);
 });
 
-router.delete("/:id", async (req, res) => {
-  const rental = await Rental.findByIdAndRemove(req.params.id);
-
-  if (!rental) {
+router.delete("/:id", [auth, admin], async (req, res) => {
+  try {
+    const rental = await Rental.findByIdAndRemove(req.params.id);
+    res.send(rental);
+  } catch (ex) {
     return res.status(404).send("The rental with the given ID was not found.");
   }
-
-  res.send(rental);
 });
 
 router.get("/:id", async (req, res) => {
-  const rental = await Rental.findById(req.params.id);
-
-  if (!rental) {
+  try {
+    const rental = await Rental.findById(req.params.id);
+    res.send(rental);
+  } catch (ex) {
     return res.status(404).send("The rental with the given ID was not found.");
   }
-
-  res.send(rental);
 });
 
 module.exports = router;

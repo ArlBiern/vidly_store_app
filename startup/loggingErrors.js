@@ -5,7 +5,7 @@ module.exports = function () {
   process.on("uncaughtException", (ex) => {
     console.log("We got uncought EXCEPTION!!!");
     logger.log({
-      level: "error",
+      level: "error" || "info",
       message: ex.message,
     });
     process.exit(1);

@@ -7,6 +7,7 @@ const {
 } = require("../models/customer");
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
+const validateObjectId = require("../middleware/validateObjectId");
 
 router.get("/", async (req, res) => {
   const customers = await Customer.find().sort({ name: 1 });
@@ -30,7 +31,7 @@ router.post("/", auth, async (req, res) => {
   res.send(customer);
 });
 
-router.put("/:id", auth, async (req, res) => {
+router.put("/:id", [auth, validateObjectId], async (req, res) => {
   const customerToUpdate = await Customer.findById(req.params.id);
 
   const { error } = validateCustomerUpdate(req.body);
@@ -57,7 +58,7 @@ router.put("/:id", auth, async (req, res) => {
   res.send(customer);
 });
 
-router.delete("/:id", [auth, admin], async (req, res) => {
+router.delete("/:id", [auth, admin, validateObjectId], async (req, res) => {
   try {
     const customer = await Customer.findByIdAndRemove(req.params.id);
     res.send(customer);

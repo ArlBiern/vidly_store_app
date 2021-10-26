@@ -1,5 +1,6 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
+const moment = require("moment");
 
 const rentalSchema = new mongoose.Schema({
   // we do not use eariler created customer schema, because probably we would not need all its properties
@@ -57,6 +58,21 @@ const rentalSchema = new mongoose.Schema({
     min: 0,
   },
 });
+
+// Add static method named lookup
+rentalSchema.statics.lookup = function (customerId, movieId) {
+  return this.findOne({
+    customerId: customerId,
+    movieId: movieId,
+  });
+};
+
+// Add instance methods
+rentalSchema.methods.saveDataAndFee = function () {
+  this.dateReturned = new Date();
+  this.rentalFee =
+    moment().diff(this.dateOut, "days") * this.movie.dailyRentalRate;
+};
 
 const Rental = mongoose.model("Rental", rentalSchema);
 

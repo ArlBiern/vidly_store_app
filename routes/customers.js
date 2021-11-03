@@ -59,6 +59,10 @@ router.put("/:id", [auth, validateObjectId], async (req, res) => {
 });
 
 router.delete("/:id", [auth, admin, validateObjectId], async (req, res) => {
+  // Add check if in any of rentals this customerr occures, check if theyy are active,
+  // if active do not delete
+  // if not active delete user and all relatedo to him rentals
+
   try {
     const customer = await Customer.findByIdAndRemove(req.params.id);
     res.send(customer);

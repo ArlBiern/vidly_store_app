@@ -4,10 +4,6 @@ const bcrypt = require("bcrypt");
 const { User } = require("../../../models/user");
 
 describe("POST /", () => {
-  //1. musimy stworzyć usera
-  //2. pobrać od niego emaila i hasło
-  //3. wykonać zapytanie do serwera z podaniem emaila i hasła
-
   let user;
 
   beforeEach(async () => {
